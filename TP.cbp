@@ -34,12 +34,14 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/Algoritmos.h" />
 		<Unit filename="include/ListaOrd_Array.h" />
 		<Unit filename="include/ListaOrd_LSE.h" />
 		<Unit filename="include/Nodo.h" />
 		<Unit filename="include/NodoL.h" />
 		<Unit filename="include/Pila.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Algoritmos.cpp" />
 		<Unit filename="src/ListaOrd_Array.cpp" />
 		<Extensions>
 			<code_completion />

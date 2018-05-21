@@ -72,3 +72,36 @@
 1526605437 c:\users\b61015\downloads\tp-final version\include\listaord_array.h
 	<iostream>
 
+1526852197 source:c:\users\jeffry\downloads\tp1-ed-master\tp1-ed-master\main.cpp
+	<iostream>
+	<stdlib.h>
+	<time.h>
+	"ListaPosicionadaLSE.h"
+	"ListaPosicionadaLDE.h"
+	"ListaIndexadaLSE.h"
+	"ListaOrd_LSE.h"
+	"ListaOrd_Array.h"
+
+1526852206 c:\users\jeffry\downloads\tp1-ed-master\tp1-ed-master\include\listaposicionadalse.h
+	"CajaS.h"
+
+1526852202 c:\users\jeffry\downloads\tp1-ed-master\tp1-ed-master\include\cajas.h
+
+1526852205 c:\users\jeffry\downloads\tp1-ed-master\tp1-ed-master\include\listaposicionadalde.h
+	"CajaD.h"
+
+1526852202 c:\users\jeffry\downloads\tp1-ed-master\tp1-ed-master\include\cajad.h
+
+1526852203 c:\users\jeffry\downloads\tp1-ed-master\tp1-ed-master\include\listaindexadalse.h
+	"CajaS.h"
+
+1526852204 c:\users\jeffry\downloads\tp1-ed-master\tp1-ed-master\include\listaord_lse.h
+	"NodoL.h"
+	<iostream>
+	<string>
+
+1526852216 c:\users\jeffry\downloads\tp1-ed-master\tp1-ed-master\include\nodol.h
+
+1526852203 c:\users\jeffry\downloads\tp1-ed-master\tp1-ed-master\include\listaord_array.h
+	<iostream>
+
