@@ -23,18 +23,18 @@ int main()
     ListaPosicionadaLSE lp;
     lp.Iniciar();
     lp.Insertar(1, lp.Primera());
-    lp.AgregarAlFinal(1);
+    lp.AgregarAlFinal(2);
     lp.AgregarAlFinal(9);
-    lp.AgregarAlFinal(1);
+    lp.AgregarAlFinal(7);
     lp.AgregarAlFinal(8);
 
     ListaPosicionadaLSE lp2;
     lp2.Iniciar();
     lp2.Insertar(1, lp2.Primera());
-    lp2.AgregarAlFinal(1);
     lp2.AgregarAlFinal(9);
-    lp2.AgregarAlFinal(1);
-    lp2.AgregarAlFinal(5);
+    //lp2.AgregarAlFinal(9);
+    //lp2.AgregarAlFinal(1);
+    //lp2.AgregarAlFinal(5);
 
     cout<<"L= "; l.imprimir();
     Algoritmos<int> a;
@@ -56,5 +56,15 @@ int main()
         cout<<"\nSon iguales";
     else
         cout<<"\nNo son iguales";
+
+        if(a.BuscarElem(l, 167))
+        cout<<"\nSi esta";
+    else
+        cout<<"\nNo esta";
+
+        if(a.Sublista(lp, lp2))
+        cout<<"\nSi es sub";
+    else
+        cout<<"\nNo es sub";
     return 0;
 }

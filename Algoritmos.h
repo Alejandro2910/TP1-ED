@@ -65,6 +65,17 @@ class Algoritmos
             return true;
         }
 
+        bool BuscarElem(ListaPosicionadaLSE Lista, A elemento){
+            CajaS<A> *iter=Lista.Primera();
+            while(iter!=nullptr){
+                if(Lista.Recuperar(iter) == elemento){
+                    return true;
+                }
+                iter=Lista.Siguiente(iter);
+            }
+            return false;
+        }
+
         void EliminarRepetidos(ListaPosicionadaLSE Lista)
         {
             CajaS<A> *ptr1=Lista.Primera();
@@ -80,6 +91,30 @@ class Algoritmos
                 }
                 ptr1=ptr1->ptrNext;
             }
+        }
+
+        bool Sublista(ListaPosicionadaLSE Lista1, ListaPosicionadaLSE Lista2){
+            if(Lista2.NumElem()>Lista1.NumElem()){
+                return false;
+            }
+            bool esElem=false;
+            CajaS<A> *iter1=Lista1.Primera();
+            CajaS<A> *iter2=Lista2.Primera();
+            while(iter2!=nullptr){
+                while(iter1!=nullptr){
+                    if(Lista1.Recuperar(iter1)==Lista2.Recuperar(iter2)){
+                        esElem=true;
+                    }
+                    iter1=Lista1.Siguiente(iter1);
+                }
+                if(!esElem){
+                    return false;
+                }else{
+                    esElem=false;
+                }
+                iter2=Lista2.Siguiente(iter2);
+            }
+            return true;
         }
 
         bool DosListasIguales(ListaPosicionadaLSE L1, ListaPosicionadaLSE L2)
