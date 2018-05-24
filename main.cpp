@@ -66,5 +66,8 @@ int main()
         cout<<"\nSi es sub";
     else
         cout<<"\nNo es sub";
+
+        a.SeleccionIterativa(l);
+        cout<<"L= "; l.imprimir();
     return 0;
 }

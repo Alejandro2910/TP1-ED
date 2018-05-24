@@ -41,7 +41,6 @@
 		<Unit filename="include/NodoL.h" />
 		<Unit filename="include/Pila.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="src/Algoritmos.cpp" />
 		<Unit filename="src/ListaOrd_Array.cpp" />
 		<Extensions>
 			<code_completion />
