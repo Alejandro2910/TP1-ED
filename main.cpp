@@ -16,9 +16,12 @@ int main()
     l.Iniciar();
     l.Insertar(5,l.Primera());
     l.Insertar(8, l.Siguiente(l.Primera()));
-    l.AgregarAlFinal(9);
-    l.AgregarAlFinal(23);
+    l.AgregarAlFinal(35);
+    l.AgregarAlFinal(29);
+    l.AgregarAlFinal(7);
+    l.AgregarAlFinal(25);
     l.AgregarAlFinal(15);
+    l.AgregarAlFinal(-9);
 
     ListaPosicionadaLSE lp;
     lp.Iniciar();
@@ -73,14 +76,38 @@ int main()
         //a.SeleccionIterativa(l);
         cout<<"L= "; l.imprimir();
 
-        a.SeleccionIterativa(lp);
+    ListaPosicionadaLSE lp1;
+    lp1.Iniciar();
+    lp.AgregarAlFinal(22);
+//    lp1.Insertar(25, lp1.Primera());
+    lp1.AgregarAlFinal(-1);
+    //lp1.AgregarAlFinal(2);
+    lp1.AgregarAlFinal(15);
+    lp1.AgregarAlFinal(7);
+    lp1.AgregarAlFinal(25);
+
+    ListaPosicionadaLSE lp3;
+    lp3.Iniciar();
+//    a.SeleccionIterativa(lp);
 //    a.BurbujaBi(lp);
 //    a.BurbujaBi(l);
 //    a.SeleccionRe(lp,lp.Primera());
 //    a.SeleccionRe(l, l.Primera());
-//    a.Insercion(lp);
-//    cout<<"\nL= "; a.Listar(l);
+    a.Insercion(lp);
+    a.BurbujaBi(l);
+    a.BurbujaBi(lp1);
+    cout<<"\nL = "; a.Listar(l);
     cout<<"\nLp = "; a.Listar(lp);
+    cout<<"\nLp1 = "; a.Listar(lp1);
+    cout<<"\n\nEliminarL2deL1";
+    a.EliminarL2deL1(lp,lp1);
+    cout<<"\nLp = "; a.Listar(lp);
+//    cout<<"\n\nInterseccion";
+//    a.Interseccion(l,lp1,lp3);
+//    cout<<"\nLp3 = "; a.Listar(lp3);
+//    cout<<"\n\nUnion";
+//    a.Union(lp,l);
+//    cout<<"\nLp = "; a.Listar(lp);
 
 
     return 0;

@@ -280,6 +280,90 @@ class Algoritmos
             }
         }
 
+        void Union(ListaPosicionadaLSE& L1, ListaPosicionadaLSE L2)
+        {
+            CajaS<A> *ptr1=L1.Primera();
+            CajaS<A> *ptr2=L2.Primera();
+            bool insertado;
+
+            while(ptr2!=nullptr)
+            {
+                insertado=false;
+                while(!insertado && ptr1!=nullptr)
+                {
+                    if(L2.Recuperar(ptr2)==L1.Recuperar(ptr1))
+                        insertado=true;
+
+                    if(L2.Recuperar(ptr2)<L1.Recuperar(ptr1))
+                    {
+                        L1.Insertar(L2.Recuperar(ptr2), ptr1);
+                        insertado=true;
+                        ptr1=L1.Siguiente(ptr1);
+                    }
+                    else
+                        ptr1=L1.Siguiente(ptr1);
+                }
+                if(ptr1==nullptr)//Elementos restantes en L2 que son mayores que el último de L1
+                {
+                    L1.AgregarAlFinal(L2.Recuperar(ptr2));
+                }
+                ptr2=L2.Siguiente(ptr2);
+            }
+        }
+
+        void Interseccion(ListaPosicionadaLSE L1, ListaPosicionadaLSE L2, ListaPosicionadaLSE& L3)
+        {
+            CajaS<A> *ptr1=L1.Primera();
+            CajaS<A> *ptr2=L2.Primera();
+            while(ptr2!=nullptr&&ptr1!=nullptr)
+            {
+                if(L2.Recuperar(ptr2)==L1.Recuperar(ptr1))
+                {
+                    L3.AgregarAlFinal(L2.Recuperar(ptr2));
+                    ptr1=L1.Siguiente(ptr1);
+                    ptr2=L2.Siguiente(ptr2);
+                }
+                else
+                    if(L2.Recuperar(ptr2)<L1.Recuperar(ptr1))
+                    {
+                        ptr2=L2.Siguiente(ptr2);
+                    }
+                    else
+                        if(L2.Recuperar(ptr2)>L1.Recuperar(ptr1))
+                        {
+                            ptr1=L1.Siguiente(ptr1);
+                        }
+            }
+        }
+
+        void EliminarL2deL1(ListaPosicionadaLSE& L1, ListaPosicionadaLSE L2)
+        {
+            CajaS<A> *ptr1=L1.Primera();
+            CajaS<A> *ptr2=L2.Primera();
+            CajaS<A> *aux;
+            while(ptr2!=nullptr&&ptr1!=nullptr)
+            {
+                if(L2.Recuperar(ptr2)==L1.Recuperar(ptr1))
+                {
+                    aux=ptr1;
+                    ptr1=L1.Siguiente(ptr1);
+                    ptr2=L2.Siguiente(ptr2);
+                    L1.Borrar(aux);
+                }
+                else
+                    if(L2.Recuperar(ptr2)<L1.Recuperar(ptr1))
+                    {
+                        ptr2=L2.Siguiente(ptr2);
+                    }
+                    else
+                        if(L2.Recuperar(ptr2)>L1.Recuperar(ptr1))
+                        {
+                            ptr1=L1.Siguiente(ptr1);
+                        }
+            }
+        }
+
+
         Algoritmos(){}
         virtual ~Algoritmos(){}
 

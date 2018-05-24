@@ -152,13 +152,23 @@ void ListaPosicionadaLSE::Insertar(Elemento elemento, CajaS<Elemento>* pos)
 */
 void ListaPosicionadaLSE::AgregarAlFinal(Elemento elemento)
 {
-    CajaS<Elemento>* next=inicio;
-    while(next->ptrNext != nullptr)
+    if(nullptr==inicio)
     {
-        next = next->ptrNext;
+        CajaS<Elemento> *caja=new CajaS<Elemento>(elemento);
+        inicio=caja;
     }
-    CajaS<Elemento> *caja=new CajaS<Elemento>(elemento);
-    next->ptrNext=caja;
+    else
+    {
+        CajaS<Elemento>* next=inicio;
+        while(next->ptrNext != nullptr)
+        {
+            next = next->ptrNext;
+        }
+        CajaS<Elemento> *caja=new CajaS<Elemento>(elemento);
+        next->ptrNext=caja;
+    }
+
+
 }
 
 /**
