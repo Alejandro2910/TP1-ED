@@ -22,8 +22,11 @@ int main()
 
     ListaPosicionadaLSE lp;
     lp.Iniciar();
-    lp.Insertar(1, lp.Primera());
+    lp.Insertar(25, lp.Primera());
+    lp.AgregarAlFinal(-1);
     lp.AgregarAlFinal(2);
+    lp.AgregarAlFinal(15);
+    lp.AgregarAlFinal(22);
     lp.AgregarAlFinal(9);
     lp.AgregarAlFinal(7);
     lp.AgregarAlFinal(8);
@@ -62,12 +65,23 @@ int main()
     else
         cout<<"\nNo esta";
 
+        a.invertir(l);
         if(a.Sublista(lp, lp2))
         cout<<"\nSi es sub";
     else
         cout<<"\nNo es sub";
-
-        a.SeleccionIterativa(l);
+        //a.SeleccionIterativa(l);
         cout<<"L= "; l.imprimir();
+
+        a.SeleccionIterativa(lp);
+//    a.BurbujaBi(lp);
+//    a.BurbujaBi(l);
+//    a.SeleccionRe(lp,lp.Primera());
+//    a.SeleccionRe(l, l.Primera());
+//    a.Insercion(lp);
+//    cout<<"\nL= "; a.Listar(l);
+    cout<<"\nLp = "; a.Listar(lp);
+
+
     return 0;
 }

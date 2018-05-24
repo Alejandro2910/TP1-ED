@@ -2,7 +2,9 @@
 #define ALGORITMOS_H
 #include "ListaPosicionadaLSE.h"
 #include "CajaS.h"
-
+#include "CajaD.h"
+//typedef CajaS* tipoPosicion;
+//Se podria hacer un tipoPosicion
 template <class A>
 class Algoritmos
 {
@@ -34,8 +36,8 @@ class Algoritmos
             CajaS<A> *ptr=Lista.Primera();
             while(ptr!=nullptr)
             {
-                std::cout<<ptr->elemento<<" ";
-                ptr=ptr->ptrNext;
+                std::cout<<Lista.Recuperar(ptr)<<" ";
+                ptr=Lista.Siguiente(ptr);
             }
             //std::cout<<std::endl;
         }
@@ -45,9 +47,9 @@ class Algoritmos
             CajaS<A> *iter2=Lista.Ultima();
             if((Lista.NumElem()%2)!=0){
                 while(iter!=iter2){
-                    if(iter->elemento != iter2->elemento)
+                    if(Lista.Recuperar(iter)!= Lista.Recuperar(iter2))
                         return false;
-                    iter=iter->ptrNext;
+                    iter=Lista.Siguiente(iter);
                     iter2=Lista.Anterior(iter2);
                 }
             }else{
@@ -55,9 +57,9 @@ class Algoritmos
                 while(!casoFinal){
                     if(iter->elemento != iter2->elemento)
                         return false;
-                    iter=iter->ptrNext;
+                    iter=Lista.Siguiente(iter);
                     iter2=Lista.Anterior(iter2);
-                    if((iter->ptrNext)==iter2){
+                    if(Lista.Siguiente(iter)==iter2){
                         casoFinal=true;
                     }
                 }
@@ -80,16 +82,16 @@ class Algoritmos
         {
             CajaS<A> *ptr1=Lista.Primera();
             CajaS<A> *ptr2;
-            while(ptr1->ptrNext!=nullptr)
+            while(Lista.Siguiente(ptr1)!=nullptr)
             {
-                ptr2=ptr1->ptrNext;
+                ptr2=Lista.Siguiente(ptr1);
                 while(ptr2!=nullptr)
                 {
-                    if(ptr1->elemento == ptr2->elemento)
+                    if(Lista.Recuperar(ptr1) == Lista.Recuperar(ptr2))
                         Lista.Borrar(ptr2);
-                    ptr2=ptr2->ptrNext;
+                    ptr2=Lista.Siguiente(ptr2);
                 }
-                ptr1=ptr1->ptrNext;
+                ptr1=Lista.Siguiente(ptr1);
             }
         }
 
@@ -101,7 +103,7 @@ class Algoritmos
             CajaS<A> *iter1=Lista1.Primera();
             CajaS<A> *iter2=Lista2.Primera();
             while(iter2!=nullptr){
-                while(iter1!=nullptr ){
+                while(iter1!=nullptr){
                     if(Lista1.Recuperar(iter1)==Lista2.Recuperar(iter2)){
                         esElem=true;
                     }
@@ -113,7 +115,6 @@ class Algoritmos
                     esElem=false;
                 }
                 iter2=Lista2.Siguiente(iter2);
-                iter1=Lista1.Primera();
             }
             return true;
         }
@@ -150,17 +151,135 @@ class Algoritmos
                 ptr2=L2.Primera();
                 while(ptr2!=nullptr && !coincidencia)
                 {
-                    if(ptr1->elemento == ptr2->elemento)
+                    if(L1.Recuperar(ptr1) == L2.Recuperar(ptr2))
                         coincidencia=true;
-                    ptr2=ptr2->ptrNext;
+                    ptr2=L2.Siguiente(ptr2);
                 }
                 if(!coincidencia)
                     return false;
-                ptr1=ptr1->ptrNext;
+                ptr1=L1.Siguiente(ptr1);
             }
             return true;
 
         }
+
+        void Burbuja(ListaPosicionadaLSE Lista)
+        {
+            CajaS<A> *ptrI;
+            CajaS<A> *fin=Lista.Ultima();
+            bool cambiado=true;
+            while(cambiado)
+            {
+                ptrI=Lista.Primera();
+                cambiado=false;
+
+                while(ptrI!=fin)
+                {
+                    if( (Lista.Recuperar(ptrI)) > (Lista.Recuperar(Lista.Siguiente(ptrI))) )
+                    {
+                        Lista.Intercambiar(ptrI,Lista.Siguiente(ptrI));
+                        cambiado=true;
+                    }
+                    ptrI=Lista.Siguiente(ptrI);
+                }
+                fin=Lista.Anterior(fin);
+            }
+        }
+
+        void BurbujaBi(ListaPosicionadaLSE Lista)
+        {
+            CajaS<A> *ptrI;
+            CajaS<A> *ptrD;
+            CajaS<A> *inicio=Lista.Primera();
+            CajaS<A> *fin=Lista.Ultima();
+            bool cambiado=true;
+            while(cambiado)
+            {
+                ptrI=inicio;
+                cambiado=false;
+
+                while(ptrI!=fin)
+                {
+                    if( (Lista.Recuperar(ptrI)) > (Lista.Recuperar(Lista.Siguiente(ptrI))) )
+                    {
+                        Lista.Intercambiar(ptrI,Lista.Siguiente(ptrI));
+                        cambiado=true;
+                    }
+                    ptrI=Lista.Siguiente(ptrI);
+
+                }
+                if(!cambiado)
+                    break;  //No hubieron cambios, ya está ordenada la lista
+
+                cambiado=false;
+                fin=Lista.Anterior(fin);
+                ptrD=fin;
+
+                while(ptrD!=inicio)
+                {
+                    if(Lista.Recuperar(ptrD) < Lista.Recuperar(Lista.Anterior(ptrD)))
+                    {
+                        Lista.Intercambiar(ptrD,Lista.Anterior(ptrD));
+                        cambiado=true;
+                    }
+                    ptrD=Lista.Anterior(ptrD);
+                }
+                inicio=Lista.Siguiente(inicio);
+            }
+        }
+
+        void SeleccionRe(ListaPosicionadaLSE Lista, CajaS<A> *ptr)
+        {
+            CajaS<A> *menor=ptr;
+            CajaS<A> *aux=Lista.Siguiente(ptr);
+            while(aux!=Lista.Siguiente(Lista.Ultima()))
+            {
+                if(Lista.Recuperar(menor)>Lista.Recuperar(aux))
+                    menor=aux;
+                aux=Lista.Siguiente(aux);
+            }
+            Lista.Intercambiar(menor, ptr);
+            if(Lista.Siguiente(ptr)!=Lista.Ultima())
+                SeleccionRe(Lista, Lista.Siguiente(ptr));
+        }
+
+        void Insercion(ListaPosicionadaLSE& Lista)
+        {
+            CajaS<A> *ptr=Lista.Siguiente(Lista.Primera());
+            CajaS<A> *aux;
+            A elem;
+
+            bool cambio=false;
+            while(ptr!=nullptr)
+            {
+                cambio=false;
+                aux=Lista.Anterior(ptr);
+                if(Lista.Recuperar(ptr)<Lista.Recuperar(aux))
+                {
+                    elem=Lista.Recuperar(ptr);
+                    CajaS<A> *aux2=ptr;
+                    ptr=aux;
+                    Lista.Borrar(aux2);
+
+                    if(elem<Lista.Recuperar(Lista.Primera()))
+                    {
+                        Lista.Insertar(elem,Lista.Primera());
+                        cambio=true;
+                    }
+                    while( aux!=Lista.Primera() && !cambio )
+                    {
+                        if(Lista.Recuperar(Lista.Anterior(aux))<elem && elem<Lista.Recuperar(aux))
+                        {
+                            Lista.Insertar(elem,aux);
+                            cambio=true;
+                        }
+                        aux=Lista.Anterior(aux);
+                    }
+                }
+                ptr=Lista.Siguiente(ptr);
+            }
+        }
+
         Algoritmos(){}
         virtual ~Algoritmos(){}
 
